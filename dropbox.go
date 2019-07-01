@@ -5,7 +5,6 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
-	"os"
 	"strings"
 )
 
@@ -14,7 +13,7 @@ type TemporaryLinkReponse struct {
 }
 
 // AccessToken is the token which will be used to authenticate dropbox requests.
-var AccessToken = os.Getenv("dropbox_token")
+var AccessToken string
 
 // GetShareLink returns a temporary, 3 hour share link to the given URL.
 func GetShareLink(dropboxPath string) (string, error) {
