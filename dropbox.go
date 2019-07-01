@@ -17,7 +17,7 @@ var AccessToken string
 
 // GetShareLink returns a temporary, 3 hour share link to the given URL.
 func GetShareLink(dropboxPath string) (string, error) {
-	response, err := makeDropRequest("https://api.dropboxapi.com/2/files/get_temporary_link", "{\"path\":\""+dropboxPath+"\"}")
+	response, err := MakeDropRequest("https://api.dropboxapi.com/2/files/get_temporary_link", "{\"path\":\""+dropboxPath+"\"}")
 	if err != nil {
 		return "", err
 	}
@@ -40,7 +40,8 @@ func GetShareLink(dropboxPath string) (string, error) {
 	return shareURL.Link, nil
 }
 
-func makeDropRequest(url string, body string) (*http.Response, error) {
+// MakeDropRequest makes a basic authenticated dropbox request.
+func MakeDropRequest(url string, body string) (*http.Response, error) {
 	request, err := http.NewRequest("POST", url, strings.NewReader(string(body)))
 	if err != nil {
 		return nil, err
