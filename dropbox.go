@@ -47,7 +47,7 @@ func makeDropRequest(url string, body string) (*http.Response, error) {
 		return nil, err
 	}
 
-	request.Header.Add("Authorization", "Bearer "+accessToken)
+	request.Header.Add("Authorization", "Bearer "+AccessToken)
 	request.Header.Add("Content-Type", "application/json")
 
 	response, err := http.DefaultClient.Do(request)
